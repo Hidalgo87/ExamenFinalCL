@@ -58,6 +58,7 @@ y hacerlas a este objeto.
 */
 
 //Prueba con el formato app1
+/*
 IUserCreator userCreatorApp1 = new ReaderApp1();
 var lista = userCreatorApp1.load_data("app_1_data.txt");
 List<User> lista_usuarios = userCreatorApp1.create_users(lista);
@@ -67,7 +68,7 @@ foreach (User usuario in lista_usuarios)
     Console.WriteLine(usuario.username);
     Console.WriteLine(usuario.password);
 }
-
+*/
 
 //Prueba con el adapter formato app2
 /*
@@ -82,3 +83,29 @@ foreach (User usuario in lista_usuarios)
     Console.WriteLine(usuario.password);
 }
 */
+
+
+//LA PRUEBA DEFINITIVAA
+
+//Puedes campiar el path segun cual desee
+//string path = "app_1_data.txt";
+string path = "app_2_data.txt";
+
+IUserCreator creator;
+if (path.Contains("1"))
+{
+    creator = new ReaderApp1();
+}
+else
+{
+    creator = new AdapterApp2(new MatchReader());
+}
+
+List<string> lista = creator.load_data(path);
+List<User> users = creator.create_users(lista);
+foreach (User usuario in users)
+{
+    Console.WriteLine(usuario.id);
+    Console.WriteLine(usuario.username);
+    Console.WriteLine(usuario.password);
+}
