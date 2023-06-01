@@ -1,7 +1,9 @@
 ﻿
 
 //using ExamenFinal.App1;
-using ExamenFinal.App2;
+//using ExamenFinal.App2;
+//using ExamenFinal.App2;
+using ExamenFinal.AppAdapter;
 /*
 PRUEBAS DEL PUNTO NÚMERO 1
 
@@ -53,4 +55,30 @@ y esta clase tendrá como atributo una instancia de la otra clase
 (En este caso de la app2 MatchReader) para que sólo sea traducir las peticiones
 y hacerlas a este objeto.
  
+*/
+
+//Prueba con el formato app1
+IUserCreator userCreatorApp1 = new ReaderApp1();
+var lista = userCreatorApp1.load_data("app_1_data.txt");
+List<User> lista_usuarios = userCreatorApp1.create_users(lista);
+foreach (User usuario in lista_usuarios)
+{
+    Console.WriteLine(usuario.id);
+    Console.WriteLine(usuario.username);
+    Console.WriteLine(usuario.password);
+}
+
+
+//Prueba con el adapter formato app2
+/*
+MatchReader mr = new MatchReader();
+IUserCreator userCreatorADAPTER = new AdapterApp2(mr);
+var lista = userCreatorADAPTER.load_data("app_2_data.txt");
+List<User> lista_usuarios = userCreatorADAPTER.create_users(lista);
+foreach (User usuario in lista_usuarios)
+{
+    Console.WriteLine(usuario.id);
+    Console.WriteLine(usuario.username);
+    Console.WriteLine(usuario.password);
+}
 */
